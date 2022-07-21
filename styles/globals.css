@@ -14,3 +14,91 @@ a {
 * {
   box-sizing: border-box;
 }
+
+@font-face {
+  font-family: 'CustomFont';
+  src: url('/fonts/Roboto-Bold.ttf');
+}
+body {
+  margin: 0;
+  font-family: 'CustomFont';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+video {
+  width: 100%;
+  height: 100%;
+}
+
+.lector {
+  display: none;
+}
+.pantalla {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.contenedor {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: lighter;
+  color: white !important;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100%;
+  width: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
+  min-height: 100vh;
+  background: #ffffff00; /* fallback for old browsers */
+}
+.pantalla::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0086af00;
+  z-index: -1;
+  opacity: 0.5;
+  background-size: cover;
+}
+
+h1 {
+  color: #d6007f;
+  font-size: 5rem;
+}
+.logo {
+  max-width: 70vw;
+}
+
+.nombre {
+  color: #1787cd;
+}
+
+.molecula {
+  max-width: 45vw;
+}
+
+p {
+  text-align: center;
+  font-size: 3rem;
+}
+
+#bgVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+}
