@@ -11,7 +11,7 @@ const App = () => {
   return (
     <>
       <div className='lector'>
-        <QrReader
+        {/* <QrReader
           onResult={(result, error) => {
             if (!!result) {
               setData(result?.text);
@@ -39,17 +39,20 @@ const App = () => {
           style={{
             display: 'none',
           }}
-        />
+        /> */}
       </div>
       <div className='pantalla'>
-        <video
-          id='bgVideo'
-          autoPlay
-          loop
-          muted
-          src={video}
-        />
-
+        <video id='bgVideo' autoPlay loop muted src={video} />
+        <div className='lector-form'>
+          <input
+            autoFocus
+            type='text'
+            placeholder='Escribe tu nombre'
+            onChange={(e) => {
+              setData(e.target.value);
+            }}
+          />
+        </div>
         <div className='contenedor'>
           <Image src={Logo} className='logo' alt='logo' />
           <div className='textos'>
