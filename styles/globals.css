@@ -117,8 +117,31 @@ p {
   background: transparent;
   font-size: 3rem;
   font-weight: lighter;
-  color: rgba(255, 255, 255, 0.48) !important;
+  color: rgba(255, 255, 255, 0.123) !important;
   display: flex;
   flex-flow: column;
   align-items: center;
+}
+.textos{
+  margin-top: 15vh;
+}
+
+input {
+  border: none;
+  background: transparent;
+  font-size: 3rem;
+  font-weight: lighter;
+  color: rgba(255, 255, 255, 0.249) !important;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+input:focus {
+  outline: none;
+}
+
+
+.color{
+color: #d6008022;
 }
