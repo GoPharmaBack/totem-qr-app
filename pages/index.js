@@ -1,25 +1,58 @@
 import axios from 'axios';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { QrReader } from 'react-qr-reader';
 import Logo from '/public/logo.png';
 import Molecula from '/public/molecule.png';
 import video from '/public/videoIMG.mp4';
 const App = () => {
   const [data, setData] = useState(' ');
+  const QrnputRef = useRef();
+  const handleOnChange = (event) => {
+    event.preventDefault();
+    setData(event.target.value);
+    setTimeout(() => {
+    
+      axios({
+        method: 'POST',
+        url: 'http://localhost:3000/api/asistencia',
+        data: {
+          name: data,
+          date: new Date().toLocaleString(),
+        },
+      })
+        .then((res) => {
+          console.log(res);
+          setData(' ');
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+      
+    , 3000);
+  
+  };
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      console.log(data);
+      QrnputRef.current.focus();
+    }, 300);
 
+    return () => clearTimeout(timeoutId);
+  }, [data]);
   return (
     <>
       <div className='lector'>
         {/* <QrReader
           onResult={(result, error) => {
             if (!!result) {
-              setData(result?.text);
+              setData(data?.text);
               axios({
                 method: 'POST',
                 url: 'http://localhost:3000/api/asistencia',
                 data: {
-                  name: result?.text,
+                  name: data?.text,
                   date: new Date().toLocaleString(),
                 },
               }).then((res) => {
@@ -45,12 +78,14 @@ const App = () => {
         <video id='bgVideo' autoPlay loop muted src={video} />
         <div className='lector-form'>
           <input
-            autoFocus
             type='text'
-            placeholder='Escribe tu nombre'
-            onChange={(e) => {
-              setData(e.target.value);
-            }}
+            name='name'
+            placeholder='Leer qr'
+            autoComplete='off'
+            ref={QrnputRef}
+            onChange={handleOnChange}
+            autoFocus
+            value={data}
           />
         </div>
         <div className='contenedor'>

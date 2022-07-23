@@ -1,4 +1,4 @@
-import Asistencia from 'models/Asistencia.models';
+import Asistencia from 'models/asistencia.models';
 import { dbConnect } from 'config/mongoose';
 dbConnect();
 
