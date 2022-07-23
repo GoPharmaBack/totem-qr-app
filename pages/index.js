@@ -86,6 +86,9 @@ const App = () => {
             onChange={handleOnChange}
             autoFocus
             value={data}
+            style={{
+              display: 'none',
+            }}
           />
         </div>
         <div className='contenedor'>
