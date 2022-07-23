@@ -1,49 +1,60 @@
 import axios from 'axios';
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
-import { QrReader } from 'react-qr-reader';
 import Logo from '/public/logo.png';
 import Molecula from '/public/molecule.png';
 import video from '/public/videoIMG.mp4';
 const App = () => {
   const [data, setData] = useState(' ');
-  const QrnputRef = useRef();
-  const handleOnChange = (event) => {
-    event.preventDefault();
-    setData(event.target.value);
-    setTimeout(() => {
-    
-      axios({
-        method: 'POST',
-        url: 'http://localhost:3000/api/asistencia',
-        data: {
-          name: data,
-          date: new Date().toLocaleString(),
-        },
-      })
-        .then((res) => {
-          console.log(res);
-          setData(' ');
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-      
-    , 3000);
-  
-  };
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      console.log(data);
-      QrnputRef.current.focus();
-    }, 300);
+  const QrinputRef = useRef();
 
-    return () => clearTimeout(timeoutId);
+  useEffect(() => {
+    if (QrinputRef.current) {
+      QrinputRef.current.focus();
+    }
+    const delayDebounceFN = setTimeout(() => {
+      console.log(data);
+      if (data !== ' ') {
+        axios({
+          method: 'POST',
+          url: 'http://localhost:3000/api/asistencia',
+          data: {
+            name: data,
+            date: new Date().toLocaleString(),
+          },
+        })
+          .then((res) => {
+            console.log(res);
+            setData('gracias'); //gracias
+            setTimeout(() => {
+              setData(' ');
+            }, 1000);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    }, 1000);
+    return () => clearTimeout(delayDebounceFN);
   }, [data]);
+
   return (
     <>
       <div className='lector'>
+        <div className='lector-form'>
+          <input
+            type='text'
+            name='name'
+            placeholder='Leer qr'
+            autoComplete='off'
+            ref={QrinputRef}
+            onChange={(e) => setData(e.target.value)}
+            autoFocus
+            value={data}
+            defaultValue='Untitled'
+            className='input-lector'
+          />
+        </div>
         {/* <QrReader
           onResult={(result, error) => {
             if (!!result) {
@@ -76,21 +87,7 @@ const App = () => {
       </div>
       <div className='pantalla'>
         <video id='bgVideo' autoPlay loop muted src={video} />
-        <div className='lector-form'>
-          <input
-            type='text'
-            name='name'
-            placeholder='Leer qr'
-            autoComplete='off'
-            ref={QrnputRef}
-            onChange={handleOnChange}
-            autoFocus
-            value={data}
-            style={{
-              display: 'none',
-            }}
-          />
-        </div>
+
         <div className='contenedor'>
           <Image src={Logo} className='logo' alt='logo' />
           <div className='textos'>
