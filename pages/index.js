@@ -158,7 +158,12 @@ const App = () => {
             <h1>¡BIENVENIDO!</h1>
             <p className='nombre'>{data}</p>
           </div>
+          <Image
+            src={Logo}
+            className='logo'
+            alt='logo'
           
+          />
         </div>
       </div>
     </>
