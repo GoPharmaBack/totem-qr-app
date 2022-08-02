@@ -29,7 +29,7 @@ const App = () => {
         })
           .then((res) => {
             console.log(res);
-            setData('Gracias...'); //gracias
+            setData('Gracias'); //gracias
             setTimeout(() => {
               setData(' ');
             }, 2000);
@@ -38,7 +38,7 @@ const App = () => {
             console.log(err);
           });
       }
-    }, 1000);
+    },5000);
     return () => clearTimeout(delayDebounceFN);
   }, [data]);
 
@@ -154,7 +154,7 @@ const App = () => {
             <h1>¡BIENVENIDO!</h1>
             <p className='nombre'>{data}</p>
           </div>
-          <Image src={Hhc} className='logo' alt='logo' width={400} height={"100%"}  />
+          <Image src={Hhc} className='logo' alt='logo' width={300} height={150}  />
         </div>
       </div>
     </>

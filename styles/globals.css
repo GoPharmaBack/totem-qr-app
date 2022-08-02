@@ -82,7 +82,9 @@ video {
 
 h1 {
   color: #d6007f;
-  font-size: 5rem;
+font-size: calc( 6rem + 2vw );
+
+
 }
 
 
@@ -97,7 +99,7 @@ h1 {
 
 p {
   text-align: center;
-  font-size: 3rem;
+  font-size: 4rem;
 }
 
 #bgVideo {
@@ -123,7 +125,10 @@ p {
   align-items: center;
 }
 .textos{
-  margin-top: 15vh;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-between;
  
 }
 
