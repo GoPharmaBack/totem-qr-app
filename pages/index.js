@@ -2,11 +2,12 @@ import axios from 'axios';
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
 import Logo from '/public/logo.png';
-import Molecula from '/public/molecule.png';
+import Hhc from '/public/hhc.png';
+//import Molecula from '/public/molecule.png';
 import video from '/public/videoIMG.mp4';
 import Particles from 'react-tsparticles';
 import { loadFull } from 'tsparticles';
-import Head from 'next/head';
+//import Head from 'next/head';
 const App = () => {
   const [data, setData] = useState(' ');
   const QrinputRef = useRef();
@@ -148,22 +149,12 @@ const App = () => {
           }}
         />
         <div className='contenedor'>
-          <Image
-            src={Logo}
-            className='logo'
-            alt='logo'
-          
-          />
+          <Image src={Logo} className='logo' alt='logo' />
           <div className='textos'>
             <h1>¡BIENVENIDO!</h1>
             <p className='nombre'>{data}</p>
           </div>
-          <Image
-            src={Logo}
-            className='logo'
-            alt='logo'
-          
-          />
+          <Image src={Hhc} className='logo' alt='logo' width={400} height={"100%"}  />
         </div>
       </div>
     </>
